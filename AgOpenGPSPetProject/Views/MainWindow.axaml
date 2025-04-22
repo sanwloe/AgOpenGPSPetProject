@@ -1,0 +1,168 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:AgOpenGPSPetProject.ViewModels"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="650"
+        x:Class="AgOpenGPSPetProject.Views.MainWindow"
+        x:DataType="vm:MainWindowViewModel"
+        Icon="/Assets/avalonia-logo.ico"
+        Title="AgOpenGPSPetProject">
+
+    
+
+	<Grid>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="auto"/>
+			<ColumnDefinition Width="*"/>
+		</Grid.ColumnDefinitions>
+
+		<Grid Grid.Column="0"> 
+			<ItemsControl>
+				<Button>
+					<Button.Content>
+						<Image Source="/Assets/btnImages/Con_VehicleMenu.png"/>
+					</Button.Content>
+					<Button.Flyout>
+						<Flyout Placement="BottomEdgeAlignedLeft">
+							<StackPanel>
+								<Button>
+									<Image Source="/Assets/btnImages/ConS_VehicleConfig.png"/>
+								</Button>
+								<Button>
+									<Image Source="/Assets/btnImages/ConS_ImplementHitch.png"/>
+								</Button>
+								<Button>
+									<Image Source="/Assets/btnImages/ConS_ImplementAntenna.png"/>
+								</Button>
+							</StackPanel>
+						</Flyout>
+					</Button.Flyout>
+				</Button>
+
+				<Button>
+					<Button.Content>
+						<Image Source="/Assets/btnImages/Con_ImplementMenu.png"/>
+					</Button.Content>
+					<Button.Flyout>
+						<Flyout Placement="BottomEdgeAlignedLeft">
+							<StackPanel>
+								<Button>
+									<Button.Content>
+										<Image Source="/Assets/btnImages/ConS_VehicleConfig.png"/>
+									</Button.Content>
+								</Button>
+								<Button>
+									<Button.Content>
+										<Image Source="/Assets/btnImages/ConS_ImplementHitch.png"/>
+									</Button.Content>
+								</Button>
+								<Button>
+									<Button.Content>
+										<Image Source="/Assets/btnImages/ConS_ImplementPivot.png"/>
+									</Button.Content>
+								</Button>
+								<Button>
+									<Button.Content>
+										<Image Source="/Assets/btnImages/ConS_ImplementOffset.png"/>
+									</Button.Content>
+								</Button>
+								<Button>
+									<Button.Content>
+										<Image Source="/Assets/btnImages/ConS_ImplementSection.png"/>
+									</Button.Content>
+								</Button>
+								<Button>
+									<Button.Content>
+										<Image Source="/Assets/btnImages/ConS_ImplementSettings.png"/>
+									</Button.Content>
+								</Button>
+								<Button>
+									<Button.Content>
+										<Image Source="/Assets/btnImages/ConS_ImplementSwitch.png"/>
+									</Button.Content>
+								</Button>
+							</StackPanel>
+						</Flyout>
+					</Button.Flyout>
+				</Button>
+
+				<Button>
+					<Button.Content>
+						<Image Source="/Assets/btnImages/Con_SourcesMenu.png"/>
+					</Button.Content>
+					<Button.Flyout>
+						<Flyout Placement="BottomEdgeAlignedLeft">
+							<StackPanel>
+								<Button>
+									<Button.Content>
+										<Image Source="/Assets/btnImages/ConS_SourcesHeading.png"/>
+									</Button.Content>
+								</Button>
+								<Button>
+									<Button.Content>
+										<Image Source="/Assets/btnImages/ConS_SourcesRoll.png"/>
+									</Button.Content>
+								</Button>
+							</StackPanel>
+						</Flyout>
+					</Button.Flyout>
+				</Button>
+
+				<Button>
+					<Button.Content>
+						<Image Source="/Assets/btnImages/Con_UTurnMenu.png"/>
+					</Button.Content>
+				</Button>
+
+				<Button>
+					<Button.Content>
+						<Image Source="/Assets/btnImages/Con_ModulesMenu.png"/>
+					</Button.Content>
+
+					<Button.Flyout>
+						<Flyout Placement="BottomEdgeAlignedLeft">
+							<StackPanel>
+								<Button>
+									<Button.Content>
+										<Image Source="/Assets/btnImages/ConS_ModulesMachine.png"/>
+									</Button.Content>
+								</Button>
+								<Button>
+									<Button.Content>
+										<Image Source="/Assets/btnImages/ConS_Pins.png"/>
+									</Button.Content>
+								</Button>
+							</StackPanel>
+						</Flyout>
+					</Button.Flyout>
+				</Button>
+
+				<Button>
+					<Button.Content>
+						<Image Source="/Assets/btnImages/Con_TramMenu.png"/>
+					</Button.Content>
+				</Button>
+
+				<Button>
+					<Button.Content>
+						<Image Source="/Assets/btnImages/Con_Display.png"/>
+					</Button.Content>
+				</Button>
+
+				<Button>
+					<Button.Content>
+						<Image Source="/Assets/btnImages/Con_FeatureMenu.png"/>
+					</Button.Content>
+				</Button>
+				
+			</ItemsControl>
+		</Grid>
+
+		<Grid Grid.Column="1">
+			
+		</Grid>
+        
+	</Grid>
+
+</Window>
