@@ -1,0 +1,211 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="1000" d:DesignHeight="750"
+             x:Class="AgOpenGPSPetProject.ButtonsSettingView"
+			 FontSize="16">
+
+	<Grid Margin="0 0 20 20">
+		<Grid.Styles>
+			<Style Selector="CheckBox">
+				<Setter	Property="Template">
+					<Setter.Value>
+						<ControlTemplate>
+							<ContentPresenter BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" Content="{TemplateBinding Content}"/>
+						</ControlTemplate>
+					</Setter.Value>
+				</Setter>
+				<Setter Property="Height" Value="60"/>
+				<Setter Property="Width" Value="100"/>
+				<Setter Property="HorizontalAlignment" Value="Center"/>
+				<Setter Property="BorderBrush" Value="Black"/>
+				<Setter Property="BorderThickness" Value="1"/>
+				<Setter Property="Margin" Value="0 10 0 0 "/>
+			</Style>
+			<Style Selector="CheckBox:checked">
+				<Setter Property="Background" Value="LightGreen"/>
+				<Setter Property="BorderBrush" Value="Black"/>
+				<Setter Property="BorderThickness" Value="1"/>
+			</Style>
+			<Style Selector="StackPanel > Label">
+				<Setter Property="HorizontalAlignment" Value="Center"/>
+			</Style>
+			<Style Selector="Label.title">
+				<Setter Property="FontWeight" Value="Black"/>
+				<Setter Property="FontSize" Value="20"/>
+			</Style>
+		</Grid.Styles>
+		
+		<Grid.RowDefinitions>
+			<RowDefinition/>
+			<RowDefinition Height="auto"/>
+		</Grid.RowDefinitions>
+
+
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="0.2*"/>
+			<ColumnDefinition Width="0.2*"/>
+			<ColumnDefinition Width="0.4*"/>
+			<ColumnDefinition Width="0.2*"/>
+		</Grid.ColumnDefinitions>
+
+
+		<StackPanel Grid.Column="0" Grid.Row="0">
+			<Label Classes="title" Content="Field menu"/>
+
+			<StackPanel>
+				<Label Content="Tram Lines"/>
+				<CheckBox>
+					<Image Source="/Assets/btnImages/TramAll.png"/>
+				</CheckBox>
+			</StackPanel>
+			<StackPanel>
+				<Label Content="Headland"/>
+				<CheckBox>
+					<Image Source="/Assets/btnImages/HeadlandOn.png"/>
+				</CheckBox>
+			</StackPanel>
+			<StackPanel>
+				<Label Content="Headland"/>
+				<CheckBox>
+					<Image Source="/Assets/btnImages/Boundary.png"/>
+				</CheckBox>
+			</StackPanel>
+			<StackPanel>
+				<Label Content="Headland"/>
+				<CheckBox>
+					<Image Source="/Assets/btnImages/RecPath.png"/>
+				</CheckBox>
+			</StackPanel>
+		</StackPanel>
+
+		<StackPanel Grid.Column="1" Grid.Row="0">
+			<Label Classes="title" Content="Tools menu"/>
+
+			<StackPanel>
+				<Label Content="AB Smooth"/>
+				<CheckBox>
+					<Image Source="/Assets/btnImages/ABSmooth.png"/>
+				</CheckBox>
+			</StackPanel>
+			<StackPanel>
+				<Label Content="Hide Contour"/>
+				<CheckBox>
+					<Image Source="/Assets/btnImages/Trash.png"/>
+				</CheckBox>
+			</StackPanel>
+			<StackPanel>
+				<Label Content="WebCam"/>
+				<CheckBox>
+					<Image Source="/Assets/btnImages/Webcam.png"/>
+				</CheckBox>
+			</StackPanel>
+			<StackPanel>
+				<Label Content="Offset Fix"/>
+				<CheckBox>
+					<Image Source="/Assets/btnImages/YouTurnReverse.png"/>
+				</CheckBox>
+			</StackPanel>
+		</StackPanel>
+
+		<StackPanel Grid.Column="2" Grid.Row="0">
+			<Label Classes="title" Content="Screen Buttons"/>
+
+			<DockPanel HorizontalAlignment="Center">
+				<StackPanel>
+					<Label Content="U-Turn"/>
+					<CheckBox>
+						<Image Source="/Assets/btnImages/z_TurnManual.png"/>
+					</CheckBox>
+				</StackPanel>
+				<StackPanel Margin="20 0 0 0">
+					<Label Content="Lateral"/>
+					<CheckBox>
+						<Image Source="/Assets/btnImages/z_LateralManual.png"/>
+					</CheckBox>
+				</StackPanel>
+			</DockPanel>
+			
+			<Label Margin="0 20 0 0" Classes="title" Content="Bottom Menu"/>
+
+			<StackPanel HorizontalAlignment="Center">
+				<Label Content="Nudge Controls"/>
+				<CheckBox>
+					<Image Source="/Assets/btnImages/SnapToPivot.png"/>
+				</CheckBox>
+			</StackPanel>
+			
+			<Label Margin="0 20 0 0" Classes="title" Content="Right menu"/>
+
+
+			<Button Width="140" Height="100" Background="Transparent" BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Center">
+				<Image Source="/Assets/btnImages/Con_RightMenuEdit.png"/>
+			</Button>
+			
+		</StackPanel>
+
+		<StackPanel Grid.Column="3" Grid.Row="0">
+			<Label Classes="title" Content="Sound"/>
+
+			<StackPanel>
+				<Label Content="Auto Steer"/>
+				<CheckBox>
+					<Image Source="/Assets/btnImages/ConF_SteerSound.png"/>
+				</CheckBox>
+			</StackPanel>
+			<StackPanel>
+				<Label Content="You Turn"/>
+				<CheckBox>
+					<Image Source="/Assets/btnImages/ConF_TurnSound.png"/>
+				</CheckBox>
+			</StackPanel>
+			<StackPanel>
+				<Label Content="Hyd Lift"/>
+				<CheckBox>
+					<Image Source="/Assets/btnImages/ConF_HydLiftSound.png"/>
+				</CheckBox>
+			</StackPanel>
+			<StackPanel>
+				<Label Content="Sections"/>
+				<CheckBox>
+					<Image Source="/Assets/btnImages/ConF_SoundSections.png"/>
+				</CheckBox>
+			</StackPanel>
+		</StackPanel>
+
+		<DockPanel Grid.Column="0" Grid.ColumnSpan="4" Grid.Row="1">
+			<StackPanel>
+				<Label Content="Power Loss Shutdown"/>
+				<CheckBox>
+					<Image Source="/Assets/btnImages/ChargingNo.png"/>
+				</CheckBox>
+			</StackPanel>
+			<StackPanel Margin="40 0 20 0">
+				<Label Content="Auto Start AgIO?"/>
+				<CheckBox Width="200">
+					<Grid>
+						<Image Source="/Assets/btnImages/AgIO.png"/>
+						<Label HorizontalAlignment="Right" VerticalAlignment="Center" Content="ON" FontWeight="Black"/>
+					</Grid>
+				</CheckBox>
+			</StackPanel>
+			<StackPanel>
+				<Label Content="Auto off AgIO?"/>
+				<CheckBox Width="200">
+					<Grid>
+						<Image Source="/Assets/btnImages/AgIO.png"/>
+						<Label HorizontalAlignment="Right" VerticalAlignment="Center" Content="OFF" Foreground="Red" FontWeight="Black"/>
+					</Grid>
+				</CheckBox>
+			</StackPanel>
+			<StackPanel>
+				<Label Content="Hardware Messages"/>
+				<CheckBox>
+					<Image Source="/Assets/btnImages/HardwareMessage.png"/>
+				</CheckBox>
+			</StackPanel>
+		</DockPanel>
+		
+	</Grid>
+</UserControl>

@@ -169,7 +169,7 @@
 					</Button.Content>
 				</Button>
 
-				<Button>
+				<Button Command="{Binding OpenButtonsSettingViewCommand}">
 					<Button.Content>
 						<Image Source="/Assets/btnImages/Con_FeatureMenu.png"/>
 					</Button.Content>

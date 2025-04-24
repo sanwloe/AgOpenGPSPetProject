@@ -98,5 +98,11 @@ namespace AgOpenGPSPetProject.ViewModels
         {
             Frame = _dispSettingsView ??= new();
         }
+        private ButtonsSettingView _buttonsSettingView;
+        [RelayCommand]
+        public void OpenButtonsSettingView() 
+        {
+            Frame = _buttonsSettingView ??= new();
+        }
     }
 }
