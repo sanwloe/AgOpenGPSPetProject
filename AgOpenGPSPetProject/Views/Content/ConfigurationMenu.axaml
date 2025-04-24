@@ -1,0 +1,105 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="900" d:DesignHeight="800"
+             x:Class="AgOpenGPSPetProject.ConfigurationMenu"
+			 
+			 
+			 FontSize="20">
+
+
+	<Grid Margin="0 10">
+
+		<Grid.Styles>
+			<Style Selector="Label.darkText">
+				<Setter Property="FontWeight" Value="Black"/>
+			</Style>
+		</Grid.Styles>
+		
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="*"/>
+			<ColumnDefinition Width="auto"/>
+		</Grid.ColumnDefinitions>
+
+		<Grid.RowDefinitions>
+			<RowDefinition Height="*"/>
+		</Grid.RowDefinitions>
+		
+		<StackPanel VerticalAlignment="Stretch" Grid.Column="0">
+			<DockPanel HorizontalAlignment="Right">
+				<Label Content="Save as" Classes="darkText"/>
+				<TextBox Width="500"/>
+			</DockPanel>
+			<DockPanel Margin="0 10" HorizontalAlignment="Right">
+				<Label Classes="darkText" Content="New From Default"/>
+				<TextBox Width="500"/>
+			</DockPanel>
+			
+			<DockPanel Margin="0 10">
+				<UniformGrid Columns="2" HorizontalAlignment="Left">
+					<Label Content="Units : "/>
+					<Label Content="Metric" Classes="darkText"/>
+						
+					<Label Content="Width : "/>
+					<Label Content="4.00 m" Classes="darkText"/>
+
+					<Label Content="Sections : "/>
+					<Label Content="3" Classes="darkText"/>
+
+					<Label Content="Offset : "/>
+					<Label Content="0 cm" Classes="darkText"/>
+
+					<Label Content="Overlap : "/>
+					<Label Content="0 cm" Classes="darkText"/>
+
+					<Label Content="Look Ahead : "/>
+					<Label Content="1 sec" Classes="darkText"/>
+
+					<Label Content="Nudge : "/>
+					<Label Content="20 cm" Classes="darkText"/>
+
+					<Label Content="Tram width : "/>
+					<Label Content="24 m" Classes="darkText"/>
+
+					<Label Content="Wheelbase : "/>
+					<Label Content="330 cm" Classes="darkText"/>
+				</UniformGrid>
+
+				<ListBox />
+			</DockPanel>	
+		</StackPanel>
+
+		<Grid Margin="20 0 20 0" Grid.Column="1">
+			<StackPanel VerticalAlignment="Top">
+				<Button Background="Transparent">
+					<Button.Content>
+						<Image Source="/Assets/btnImages/FileSaveAs.png"/>
+					</Button.Content>
+				</Button>
+				<Button Background="Transparent">
+					<Button.Content>
+						<Image Source="/Assets/btnImages/FileSave.png"/>
+					</Button.Content>
+				</Button>
+			</StackPanel>
+			
+			<StackPanel VerticalAlignment="Center">
+				
+				<Button Background="Transparent">
+					<Button.Content>
+						<Image Source="/Assets/btnImages/FileOpen.png"/>
+					</Button.Content>
+				</Button>
+				<Label Content="Open" HorizontalAlignment="Center"/>
+				<Button Background="Transparent">
+					<Button.Content>
+						<Image Source="/Assets/btnImages/Trash.png"/>
+					</Button.Content>
+				</Button>
+				<Label Content="Delete" HorizontalAlignment="Center"/>
+			</StackPanel>
+		</Grid>
+	</Grid>
+	
+</UserControl>

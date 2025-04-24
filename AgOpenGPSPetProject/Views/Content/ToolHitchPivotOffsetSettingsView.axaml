@@ -1,0 +1,74 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="1000" d:DesignHeight="700"
+             x:Class="AgOpenGPSPetProject.ToolHitchPivotOffsetSettingsView"
+			 FontSize="20"
+			 xmlns:vm="using:AgOpenGPSPetProject.ViewModels"
+			 x:DataType="vm:ToolHitchPivotOffsetSettingsViewModel"
+			 xmlns:i="using:Avalonia.Xaml.Interactivity"
+			 xmlns:ei="using:Avalonia.Xaml.Interactions.Core">
+
+
+	<UserControl.DataContext>
+		<vm:ToolHitchPivotOffsetSettingsViewModel/>
+	</UserControl.DataContext>
+	
+	<Grid Margin="20">
+		<Grid.Styles>
+			<Style Selector="RadioButton">
+				<Setter Property="Template">
+					<Setter.Value>
+						<ControlTemplate>
+							<ContentPresenter BorderBrush="{TemplateBinding BorderBrush}"
+											  BorderThickness="{TemplateBinding BorderThickness}"
+											  Background="{TemplateBinding Background}" 
+											  Content="{TemplateBinding Content}"/>
+						</ControlTemplate>
+					</Setter.Value>
+				</Setter>
+			</Style>
+			<Style Selector="RadioButton:checked">
+				<Setter Property="Background" Value="LightGreen"/>
+			</Style>
+		</Grid.Styles>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="0.25*"/>
+			<RowDefinition Height="0.5*"/>
+			<RowDefinition Height="0.25*"/>
+		</Grid.RowDefinitions>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition/>
+			<ColumnDefinition/>
+			<ColumnDefinition/>
+		</Grid.ColumnDefinitions>
+
+		<RadioButton HorizontalAlignment="Right" GroupName="rb" BorderBrush="Black" BorderThickness="1" Grid.Column="0" Grid.Row="1">
+			<Image Source="/Assets/Images/ToolHitchPivotOffsetPos.png"/>
+		</RadioButton>
+
+		<StackPanel Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center">
+			<Label Content="cm" FontWeight="Black" HorizontalAlignment="Center"/>
+			<TextBox Width="150" Text="{Binding Offset}" FontWeight="Black" HorizontalContentAlignment="Center">
+				<i:Interaction.Behaviors>
+					<ei:EventTriggerBehavior EventName="PointerWheelChanged">
+						<ei:InvokeCommandAction PassEventArgsToCommand="True" Command="{Binding OffsetPointerWheelChangedCommand}"/>
+					</ei:EventTriggerBehavior>
+				</i:Interaction.Behaviors>
+			</TextBox>
+			<Button Width="100" Background="Transparent" HorizontalAlignment="Center">
+				<i:Interaction.Behaviors>
+					<ei:EventTriggerBehavior EventName="Click">
+						<ei:ChangePropertyAction TargetObject="{Binding}" PropertyName="Offset" Value="0"/>
+					</ei:EventTriggerBehavior>
+				</i:Interaction.Behaviors>
+				<Image Margin="0 20 0 0 " Source="/Assets/btnImages/SteerZero.png"/>
+			</Button>
+		</StackPanel>
+
+		<RadioButton GroupName="rb" Grid.Column="2" Grid.Row="1" BorderBrush="Black" BorderThickness="1">
+			<Image Source="/Assets/Images/ToolHitchPivotOffsetNeg.png"/>
+		</RadioButton>
+	</Grid>
+</UserControl>

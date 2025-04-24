@@ -1,0 +1,123 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="1000" d:DesignHeight="700"
+             x:Class="AgOpenGPSPetProject.WorkAndSteerSwitchView"
+			 FontSize="20">
+
+
+
+
+	<Grid Margin="20">
+		<Grid.Resources>
+			<Image x:Key="switchActiveClosed" Source="/Assets/btnImages/SwitchActiveClosed.png"/>
+			<Image x:Key="switchActiveOpen" Source="/Assets/btnImages/SwitchActiveOpen.png"/>
+		</Grid.Resources>
+		<Grid.Styles>
+			<Style Selector="Label">
+				<Setter Property="HorizontalContentAlignment" Value="Right"/>
+			</Style>
+			<Style Selector="CheckBox">
+				<Setter Property="Height" Value="100"/>
+				<Setter Property="BorderBrush" Value="Black"/>
+				<Setter Property="BorderThickness" Value="1"/>
+				<Setter Property="FontWeight" Value="Black"/>
+				<Setter Property="HorizontalAlignment" Value="Stretch"/>
+				<Setter Property="Margin" Value="20"/>
+				<Setter Property="Template">
+					<Setter.Value>
+						<ControlTemplate>
+							<ContentPresenter IsEnabled="{TemplateBinding IsEnabled}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Content="{TemplateBinding Content}" Background="{TemplateBinding Background}"/>
+						</ControlTemplate>
+					</Setter.Value>
+				</Setter>
+			</Style>
+			<Style Selector="RadioButton">
+				<Setter Property="Height" Value="100"/>
+				<Setter Property="BorderBrush" Value="Black"/>
+				<Setter Property="BorderThickness" Value="1"/>
+				<Setter Property="FontWeight" Value="Black"/>
+				<Setter Property="HorizontalAlignment" Value="Stretch"/>
+				<Setter Property="Margin" Value="20"/>
+				<Setter Property="Template">
+					<Setter.Value>
+						<ControlTemplate>
+							<ContentPresenter IsEnabled="{TemplateBinding IsEnabled}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Content="{TemplateBinding Content}" Background="{TemplateBinding Background}"/>
+						</ControlTemplate>
+					</Setter.Value>
+				</Setter>
+			</Style>
+			<Style Selector="CheckBox.cbox:checked">
+				<Setter Property="Background" Value="LightGreen"/>
+				<Setter Property="BorderBrush" Value="Black"/>
+				<Setter Property="BorderThickness" Value="1"/>
+			</Style>
+			<Style Selector="RadioButton.rbox:checked">
+				<Setter Property="Background" Value="LightGreen"/>
+			</Style>
+			<Style Selector="CheckBox.special:unchecked">
+				<Setter Property="Content" Value="{DynamicResource switchActiveOpen}"/>
+			</Style>
+			<Style Selector="CheckBox.special:checked">
+				<Setter Property="BorderBrush" Value="Black"/>
+				<Setter Property="BorderThickness" Value="1"/>
+				<Setter Property="Content" Value="{DynamicResource switchActiveClosed}"/>
+			</Style>
+			
+		</Grid.Styles>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="0.4*"/>
+			<ColumnDefinition Width="0.0*"/>
+			<ColumnDefinition Width="0.4*"/>
+		</Grid.ColumnDefinitions>
+
+
+
+		<StackPanel Grid.Column="0" HorizontalAlignment="Center">
+			<Label HorizontalContentAlignment="Left" Content="Work Switch"/>
+			<CheckBox x:Name="workSwitch" Classes="cbox">
+				<DockPanel>
+					<Image Source="/Assets/btnImages/HydraulicLiftOff.png"/>
+					<Label Content="Activate" FontSize="24" VerticalAlignment="Center"/>
+				</DockPanel>
+			</CheckBox>
+			<RadioButton IsEnabled="{Binding IsChecked,ElementName=workSwitch}" Classes="rbox" GroupName="rb1">
+				<DockPanel>
+					<Image Source="/Assets/btnImages/ManualOff.png"/>
+					<Label Content="ManualSections:" FontSize="24" VerticalAlignment="Center"/>
+				</DockPanel>
+			</RadioButton>
+			<RadioButton IsEnabled="{Binding IsChecked,ElementName=workSwitch}" Classes="rbox" GroupName="rb1">
+				<DockPanel>
+					<Image Source="/Assets/btnImages/HydraulicLiftOff.png"/>
+					<Label Content="AutoSections:" FontSize="24" VerticalAlignment="Center"/>
+				</DockPanel>
+			</RadioButton>
+			<CheckBox IsEnabled="{Binding IsChecked,ElementName=workSwitch}" Classes="special"/>
+			
+		</StackPanel>
+
+		<StackPanel Grid.Column="2" HorizontalAlignment="Center">
+			<Label HorizontalContentAlignment="Left" Content="Steer Switch"/>
+			<CheckBox x:Name="steerSwitch" Classes="cbox">
+				<DockPanel>
+					<Image Source="/Assets/btnImages/HydraulicLiftOff.png"/>
+					<Label Content="Activate" FontSize="24" VerticalAlignment="Center"/>
+				</DockPanel>
+			</CheckBox>
+			<RadioButton IsEnabled="{Binding IsChecked,ElementName=steerSwitch}" Classes="rbox" GroupName="rb2">
+				<DockPanel>
+					<Image Source="/Assets/btnImages/ManualOff.png"/>
+					<Label Content="ManualSections:" FontSize="24" VerticalAlignment="Center"/>
+				</DockPanel>
+			</RadioButton>
+			<RadioButton  IsEnabled="{Binding IsChecked,ElementName=steerSwitch}" Classes="rbox" GroupName="rb2">
+				<DockPanel>
+					<Image Source="/Assets/btnImages/HydraulicLiftOff.png"/>
+					<Label Content="AutoSections:" FontSize="24" VerticalAlignment="Center"/>
+				</DockPanel>
+			</RadioButton>
+		</StackPanel>
+	</Grid>
+</UserControl>

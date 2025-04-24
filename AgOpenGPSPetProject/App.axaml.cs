@@ -1,4 +1,6 @@
+using System.Globalization;
 using System.Linq;
+using System.Threading;
 using AgOpenGPSPetProject.ViewModels;
 using AgOpenGPSPetProject.Views;
 using Avalonia;
@@ -28,7 +30,9 @@ namespace AgOpenGPSPetProject
                     DataContext = new MainWindowViewModel(),
                 };
             }
-
+            var culture = new CultureInfo("en-US");
+            CultureInfo.DefaultThreadCurrentCulture = culture;
+            CultureInfo.DefaultThreadCurrentUICulture = culture;
             base.OnFrameworkInitializationCompleted();
         }
 

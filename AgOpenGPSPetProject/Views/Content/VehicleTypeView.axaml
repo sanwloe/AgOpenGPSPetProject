@@ -1,0 +1,132 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="900" d:DesignHeight="700"
+             x:Class="AgOpenGPSPetProject.VehicleTypeView"
+			 xmlns:vm="using:AgOpenGPSPetProject.ViewModels"
+			 x:DataType="vm:VehicleTypeViewModel"
+			 xmlns:system="using:System"
+			 xmlns:i="using:Avalonia.Xaml.Interactivity"
+			 xmlns:ei="using:Avalonia.Xaml.Interactions.Core">
+
+
+	<UserControl.DataContext>
+		<vm:VehicleTypeViewModel/>
+	</UserControl.DataContext>
+
+	<Grid Margin="10">
+		<Grid.Styles>
+			<Style Selector="ListBoxItem.special">
+				<Setter Property="Template">
+					<Setter.Value>
+						<ControlTemplate>
+							<Border Background="{TemplateBinding Background}">
+								<ContentPresenter Content="{TemplateBinding Content}"/>
+							</Border>
+						</ControlTemplate>
+					</Setter.Value>
+				</Setter>
+			</Style>
+			<Style Selector="ListBoxItem.special:selected">
+				<Setter Property="Background" Value="LightGreen"/>
+			</Style>
+		</Grid.Styles>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="0.6*"/>
+			<ColumnDefinition Width="0.4*"/>
+		</Grid.ColumnDefinitions>
+
+
+		<StackPanel Grid.Column="0">
+			<StackPanel Orientation="Horizontal">
+				<StackPanel.Styles>
+					<Style Selector="RadioButton">
+						<Setter Property="Template">
+							<Setter.Value>
+								<ControlTemplate>
+									<ContentPresenter Content="{TemplateBinding Content}" Background="{TemplateBinding Background}"/>
+								</ControlTemplate>
+							</Setter.Value>
+						</Setter>
+					</Style>
+					<Style Selector="RadioButton:checked">
+						<Setter Property="Background" Value="LightGreen"/>
+					</Style>
+				</StackPanel.Styles>
+				
+				<RadioButton Margin="20" IsChecked="True" GroupName="rb">
+					<i:Interaction.Behaviors>
+						<ei:EventTriggerBehavior EventName="Checked">
+							<ei:InvokeCommandAction Command="{Binding HarvesterWasCheckedCommand}"/>
+						</ei:EventTriggerBehavior>
+					</i:Interaction.Behaviors>
+					<Image Width="140" Source="/Assets/btnImages/vehiclePageHarvester.png"/>
+				</RadioButton>
+				<RadioButton Margin="20" GroupName="rb">
+					<i:Interaction.Behaviors>
+						<ei:EventTriggerBehavior EventName="Checked">
+							<ei:InvokeCommandAction Command="{Binding TractorWasCheckedCommand}"/>
+						</ei:EventTriggerBehavior>
+					</i:Interaction.Behaviors>
+					<Image Width="140" Source="/Assets/btnImages/vehiclePageTractor.png"/>
+				</RadioButton>
+				<RadioButton Margin="20" GroupName="rb">
+					<i:Interaction.Behaviors>
+						<ei:EventTriggerBehavior EventName="Checked">
+							<ei:InvokeCommandAction Command="{Binding ArticulatorWasCheckedCommand}"/>
+						</ei:EventTriggerBehavior>
+					</i:Interaction.Behaviors>
+					<Image Width="140" Source="/Assets/btnImages/vehiclePageArticulated.png"/>
+				</RadioButton>
+			</StackPanel>
+
+			<ListBox Margin="0 20" SelectionMode="Single" ItemsSource="{Binding VehicleCompanies}">
+				<ListBox.Styles>
+					<Style Selector="ListBoxItem:selected /template/ ContentPresenter">
+						<Setter Property="Background" Value="LightGreen"/>
+					</Style>
+				</ListBox.Styles>
+				<ListBox.ItemsPanel>
+					<ItemsPanelTemplate>
+						<WrapPanel Orientation="Horizontal"/>
+					</ItemsPanelTemplate>
+				</ListBox.ItemsPanel>
+				<ListBox.ItemTemplate>
+					<DataTemplate>
+						<Image Stretch="None" Source="{Binding}"/>
+					</DataTemplate>
+				</ListBox.ItemTemplate>
+			</ListBox>
+		</StackPanel>
+
+		<StackPanel Margin="0 0 30 0" Grid.Column="1">
+			<Label Content="No Image :" HorizontalAlignment="Center"/>
+
+			<Button Command="{Binding HandleNoImageTappedCommand}" Width="100" Background="White" Height="100" BorderThickness="1" BorderBrush="Silver" HorizontalAlignment="Center">
+				<Image Width="150" Source="/Assets/btnImages/TriangleVehicle.png"/>
+			</Button>
+
+			<Grid Margin="30">
+				<Image Width="200" Stretch="None" ZIndex="1" Source="/Assets/Vehicle/VehicleOpacity.png"/>
+				<Image Width="190" Stretch="None" ZIndex="2" Source="{Binding VehiclePhotoFromAbove}" Opacity="{Binding VehicleOpacity}"/>
+			</Grid>
+			
+			<Label Content="Opacity:" HorizontalAlignment="Center" FontSize="20" FontWeight="Black"/>
+
+			<StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+				<Button Command="{Binding DownVehicleOpacityCommand}" BorderThickness="1" BorderBrush="Silver" Background="White">
+					<Button.Content>
+						<Image Stretch="None" Source="/Assets/btnImages/DnArrow64.png"/>
+					</Button.Content>
+				</Button>
+				<Label Margin="10" Content="{Binding IntVehicleOpacity,StringFormat=' {0}%',Mode=OneWay}" FontWeight="Black" FontSize="40"/>
+				<Button Command="{Binding UpVehicleOpacityCommand}" BorderThickness="1" BorderBrush="Silver" Background="White">
+					<Button.Content>
+						<Image Stretch="None" Source="/Assets/btnImages/UpArrow64.png"/>
+					</Button.Content>
+				</Button>
+			</StackPanel>
+		</StackPanel>
+	</Grid>
+</UserControl>

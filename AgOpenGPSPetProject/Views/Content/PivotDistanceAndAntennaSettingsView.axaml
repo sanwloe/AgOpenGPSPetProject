@@ -1,0 +1,109 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="900" d:DesignHeight="700"
+             x:Class="AgOpenGPSPetProject.PivotDistanceAndAntennaSettingsView"
+			 FontSize="20"
+			 xmlns:vm="using:AgOpenGPSPetProject.ViewModels"
+			 x:DataType="vm:PivotDistanceAndAntennaSettingsViewModel"
+			 xmlns:i="using:Avalonia.Xaml.Interactivity"
+			 xmlns:ei="using:Avalonia.Xaml.Interactions.Core">
+
+	<UserControl.DataContext>
+		<vm:PivotDistanceAndAntennaSettingsViewModel/>
+	</UserControl.DataContext>
+
+	<Grid>
+		<Canvas>
+			<Grid Canvas.Top="100">
+				<Image Source="/Assets/Images/AntennaTractor.png"/>
+			</Grid>
+			
+			<StackPanel Canvas.Top="30" Canvas.Left="90">
+				<StackPanel>
+					<Label FontSize="14" Content="Pivot distance" HorizontalAlignment="Center"/>
+				</StackPanel>
+				<StackPanel Orientation="Horizontal">
+					<TextBox FontSize="24" FontWeight="Black" Width="150" Text="{Binding PivotDistance}" HorizontalContentAlignment="Center">
+						<i:Interaction.Behaviors>
+							<ei:EventTriggerBehavior EventName="PointerWheelChanged">
+								<ei:InvokeCommandAction PassEventArgsToCommand="True" Command="{Binding PivotDistancePointerWheelChangedCommand}"/>
+							</ei:EventTriggerBehavior>
+						</i:Interaction.Behaviors>
+					</TextBox>
+					<Label FontWeight="Black" Content="cm" VerticalAlignment="Bottom"/>
+				</StackPanel>
+			</StackPanel>
+			<StackPanel Canvas.Left="370" Canvas.Top="200">
+				<DockPanel>
+					<TextBox FontWeight="Black" Width="150" Text="{Binding AntennaHeight}">
+						<i:Interaction.Behaviors>
+							<ei:EventTriggerBehavior EventName="PointerWheelChanged">
+								<ei:InvokeCommandAction PassEventArgsToCommand="True" Command="{Binding AntennaHeightPointerWheelChangedCommand}"/>
+							</ei:EventTriggerBehavior>
+						</i:Interaction.Behaviors>
+					</TextBox>
+					<Label Content="cm" FontWeight="Black"/>
+				</DockPanel>
+				<Label Content="Antenna height" FontSize="14" HorizontalAlignment="Center"/>
+			</StackPanel>
+			<StackPanel Canvas.Left="450" Canvas.Top="370">
+				<DockPanel HorizontalAlignment="Center">
+					<TextBox Width="150" Text="{Binding AntennaOffset}" FontWeight="Black" HorizontalContentAlignment="Center">
+						<i:Interaction.Behaviors>
+							<ei:EventTriggerBehavior EventName="PointerWheelChanged">
+								<ei:InvokeCommandAction PassEventArgsToCommand="True" Command="{Binding AntennaOffsetPointerWheelChangedCommand}"/>
+							</ei:EventTriggerBehavior>
+						</i:Interaction.Behaviors>
+					</TextBox>
+					<Label Content="cm" FontWeight="Black"/>
+				</DockPanel>
+				<Label Margin="0 20 0 0" Content="Antenna Offset" HorizontalAlignment="Left" FontWeight="Black"/>
+				<DockPanel>
+					<DockPanel.Styles>
+						<Style Selector="RadioButton">
+							<Setter Property="Template">
+								<Setter.Value>
+									<ControlTemplate>
+										<ContentPresenter BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" Content="{TemplateBinding Content}"/>
+									</ControlTemplate>
+								</Setter.Value>
+							</Setter>
+							<Setter Property="Margin" Value="20"/>
+							<Setter Property="BorderBrush" Value="Black"/>
+							<Setter Property="BorderThickness" Value="2"/>
+						</Style>
+						<Style Selector="RadioButton:checked">
+							<Setter Property="Background" Value="LightGreen"/>
+						</Style>
+					</DockPanel.Styles>
+					<RadioButton GroupName="rb">
+						<StackPanel>
+							<Image Source="/Assets/btnImages/AntennaLeftOffset.png"/>
+							<Label Content="Left"/>
+						</StackPanel>
+					</RadioButton>
+					<RadioButton GroupName="rb">
+						<i:Interaction.Behaviors>
+							<ei:EventTriggerBehavior EventName="Checked">
+								<ei:ChangePropertyAction TargetObject="{Binding}" PropertyName="AntennaOffset" Value="0"/>
+							</ei:EventTriggerBehavior>
+						</i:Interaction.Behaviors>
+						<StackPanel>
+							<Image Source="/Assets/btnImages/AntennaNoOffset.png"/>
+							<Label Content="Center"/>
+						</StackPanel>
+					</RadioButton>
+					<RadioButton GroupName="rb">
+						<StackPanel>
+							<Image Source="/Assets/btnImages/AntennaRightOffset.png"/>
+							<Label Content="Right"/>
+						</StackPanel>
+					</RadioButton>
+				</DockPanel>
+				<Label FontSize="12" Content="Dual Position Antenna is on Right side" HorizontalAlignment="Right"/>
+			</StackPanel>
+		</Canvas>
+	</Grid>
+</UserControl>

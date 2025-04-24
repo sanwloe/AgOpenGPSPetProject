@@ -1,0 +1,37 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="AgOpenGPSPetProject.AttachmentStyleView">
+
+	<StackPanel Margin="10">
+		<Label Content="Attachment Style" FontWeight="Black" FontSize="20"/>
+		<UniformGrid Columns="2">
+			<UniformGrid.Styles>
+				<Style Selector="RadioButton">
+					<Setter Property="Template">
+						<ControlTemplate>
+							<ContentPresenter Background="{TemplateBinding Background}" Content="{TemplateBinding Content}"/>
+						</ControlTemplate>
+					</Setter>
+				</Style>
+				<Style Selector="RadioButton:checked">
+					<Setter Property="Background" Value="LightGreen"/>
+				</Style>
+			</UniformGrid.Styles>
+			<RadioButton GroupName="rb">
+				<Image Source="/Assets/Vehicle/ToolChkRear.png"/>
+			</RadioButton>
+			<RadioButton GroupName="rb">
+				<Image Source="/Assets/Vehicle/ToolChkTBT.png"/>
+			</RadioButton>
+			<RadioButton GroupName="rb">
+				<Image Source="/Assets/Vehicle/ToolChkFront.png"/>
+			</RadioButton>
+			<RadioButton GroupName="rb">
+				<Image Source="/Assets/Vehicle/ToolChkTrailing.png"/>
+			</RadioButton>
+		</UniformGrid>
+	</StackPanel>
+</UserControl>

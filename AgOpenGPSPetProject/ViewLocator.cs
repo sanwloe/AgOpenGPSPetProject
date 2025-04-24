@@ -1,5 +1,5 @@
 using System;
-using AgOpenGPSPetProject.ViewModels;
+using AgOpenGPSPetProject.Abstractions;
 using Avalonia.Controls;
 using Avalonia.Controls.Templates;
 

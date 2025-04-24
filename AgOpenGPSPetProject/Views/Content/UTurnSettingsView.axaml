@@ -1,0 +1,76 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="1000" d:DesignHeight="750"
+             x:Class="AgOpenGPSPetProject.UTurnSettingsView"
+			 FontSize="30"
+			 xmlns:viewmodels="using:AgOpenGPSPetProject.ViewModels"
+			 x:DataType="viewmodels:UTurnSettingsViewModel"
+			 xmlns:i="using:Avalonia.Xaml.Interactivity"
+			 xmlns:ei="using:Avalonia.Xaml.Interactions.Core">
+
+	<UserControl.DataContext>
+		<viewmodels:UTurnSettingsViewModel/>
+	</UserControl.DataContext>
+	
+	<Grid Margin="60 0 60 0">
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition/>
+			<ColumnDefinition Width="auto"/>
+		</Grid.ColumnDefinitions>
+		<DockPanel Grid.Column="0" VerticalAlignment="Center">
+			<StackPanel>
+				<Image Height="150" Source="/Assets/Images/ConU_UturnLength.png"/>
+				<Label Content="{Binding ExtensionLength,StringFormat=' {0} m'}" HorizontalAlignment="Center" FontWeight="Black"/>
+				<DockPanel>
+					<Button Command="{Binding DecreaseExtensionsLengthCommand}" Background="Transparent">
+						<Image Height="70" Source="/Assets/btnImages/DnArrow64.png"/>
+					</Button>
+					<Button Command="{Binding IncreaseExtensionsLengthCommand}" Background="Transparent">
+						<Image Height="70" Source="/Assets/btnImages/UpArrow64.png"/>
+					</Button>
+				</DockPanel>
+				<TextBlock FontSize="20" Width="150" FontWeight="Black" Text="Set extensions length to 2 or 3x Radius" TextWrapping="Wrap"/>
+			</StackPanel>
+			<StackPanel HorizontalAlignment="Center">
+				<Image Height="150" Source="/Assets/Images/ConU_UturnSmooth.png"/>
+				<Label Content="{Binding Smoothing}" HorizontalAlignment="Center" FontWeight="Black"/>
+				<DockPanel>
+					<Button Command="{Binding DecreaseSmoothCommand}" Background="Transparent">
+						<Image Height="70" Source="/Assets/btnImages/DnArrow64.png"/>
+					</Button>
+					<Button Command="{Binding IncreaseSmoothCommand}" Background="Transparent">
+						<Image Height="70" Source="/Assets/btnImages/UpArrow64.png"/>
+					</Button>
+				</DockPanel>
+				<TextBlock FontSize="20" Width="150" Text="Set Smoothing 3-4x Radius" TextWrapping="Wrap" FontWeight="Black"/>
+			</StackPanel>
+		</DockPanel>
+		<StackPanel Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Center">
+			<StackPanel>
+				<Image Height="150" Source="/Assets/Images/ConU_UturnRadius.png"/>
+				<TextBox Margin="0 20 0 0" Width="200" FontWeight="Black" Text="{Binding UTurnRadius}" HorizontalContentAlignment="Center">
+					<i:Interaction.Behaviors>
+						<ei:EventTriggerBehavior EventName="PointerWheelChanged">
+							<ei:InvokeCommandAction PassEventArgsToCommand="True" Command="{Binding UTurnRadiusWheelChangedCommand}"/>
+						</ei:EventTriggerBehavior>
+					</i:Interaction.Behaviors>
+				</TextBox>
+				<Label Content="m" HorizontalAlignment="Center" FontWeight="Black"/>
+			</StackPanel>
+			<StackPanel Margin="0 60">
+				<Image Height="150" Source="/Assets/Images/ConU_UturnDistance.png"/>
+				<TextBox Margin="0 20 0 0" Width="200" FontWeight="Black" Text="{Binding UTurnDistance}" HorizontalContentAlignment="Center">
+					<i:Interaction.Behaviors>
+						<ei:EventTriggerBehavior EventName="PointerWheelChanged">
+								<ei:InvokeCommandAction PassEventArgsToCommand="True" Command="{Binding UTurnDistanceWheelChangedCommand}"/>
+						</ei:EventTriggerBehavior>
+					</i:Interaction.Behaviors>
+				</TextBox>
+				<Label Content="m" HorizontalAlignment="Center" FontWeight="Black"/>
+			</StackPanel>
+		</StackPanel>
+	</Grid>
+	
+</UserControl>

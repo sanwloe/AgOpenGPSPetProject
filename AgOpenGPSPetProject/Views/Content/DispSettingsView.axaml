@@ -1,0 +1,191 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="1000" d:DesignHeight="750"
+             x:Class="AgOpenGPSPetProject.DispSettingsView"
+			 FontSize="20"
+			 xmlns:vm="using:AgOpenGPSPetProject.ViewModels"
+			 x:DataType="vm:DispSettingsViewModel"
+			 xmlns:i="using:Avalonia.Xaml.Interactivity"
+			 xmlns:ei="using:Avalonia.Xaml.Interactions.Core">
+
+
+	<UserControl.DataContext>
+		<vm:DispSettingsViewModel/>
+	</UserControl.DataContext>
+	
+	<Grid Margin="0 0 30 30">
+		<Grid.Styles>
+			<Style Selector="RadioButton">
+				<Setter Property="Template">
+					<Setter.Value>
+						<ControlTemplate>
+							<ContentPresenter BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Content="{TemplateBinding Content}" Background="{TemplateBinding Background}"/>
+						</ControlTemplate>
+					</Setter.Value>
+				</Setter>
+				<Setter Property="BorderBrush" Value="Black"/>
+				<Setter Property="BorderThickness" Value="1"/>
+				<Setter Property="Height" Value="60"/>
+				<Setter Property="Width" Value="120"/>
+				<Setter Property="Margin" Value="0 20 0 5"/>
+			</Style>
+			<Style Selector="RadioButton:checked">
+				<Setter Property="Background" Value="LightGreen"/>
+				<Setter Property="BorderBrush" Value="Black"/>
+				<Setter Property="BorderThickness" Value="1"/>
+			</Style>
+			<Style Selector="CheckBox">
+				<Setter Property="Template">
+					<Setter.Value>
+						<ControlTemplate>
+							<ContentPresenter BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Content="{TemplateBinding Content}" Background="{TemplateBinding Background}"/>
+						</ControlTemplate>
+					</Setter.Value>
+				</Setter>
+				<Setter Property="BorderBrush" Value="Black"/>
+				<Setter Property="BorderThickness" Value="1"/>
+				<Setter Property="Height" Value="60"/>
+				<Setter Property="Width" Value="120"/>
+				<Setter Property="Margin" Value="0 20 0 5"/>
+			</Style>
+			<Style Selector="CheckBox:checked">
+				<Setter Property="Background" Value="LightGreen"/>
+				<Setter Property="BorderBrush" Value="Black"/>
+				<Setter Property="BorderThickness" Value="1"/>
+			</Style>
+			<Style Selector="StackPanel">
+				<Setter Property="HorizontalAlignment" Value="Center"/>
+			</Style>
+			<Style Selector="StackPanel > CheckBox">
+				<Setter Property="HorizontalAlignment" Value="Center"/>
+			</Style>
+			<Style Selector="StackPanel > Label">
+				<Setter Property="HorizontalAlignment" Value="Center"/>
+			</Style>
+		</Grid.Styles>
+
+
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition/>
+			<ColumnDefinition/>
+			<ColumnDefinition/>
+			<ColumnDefinition/>
+			<ColumnDefinition/>
+		</Grid.ColumnDefinitions>
+
+		<StackPanel Grid.Column="0">
+			<StackPanel>
+				<CheckBox>
+					<Image Source="/Assets/btnImages/ConD_Poligons.png"/>
+				</CheckBox>
+				<Label Content="Polygons"/>
+			</StackPanel>
+			<StackPanel>
+				<CheckBox>
+					<Image Source="/Assets/btnImages/BrightnessUp.png"/>
+				</CheckBox>
+				<Label Content="Brightness"/>
+			</StackPanel>
+			<StackPanel>
+				<CheckBox>
+					<Image Source="/Assets/btnImages/ConD_FloorTexture.png"/>
+				</CheckBox>
+				<Label Content="Field Texture"/>
+			</StackPanel>
+			<StackPanel>
+				<CheckBox>
+					<Image Source="/Assets/btnImages/ConD_LineSmooth.png"/>
+				</CheckBox>
+				<Label Content="Line Smooth"/>
+			</StackPanel>
+		</StackPanel>
+
+		<StackPanel Grid.Column="1">
+			<StackPanel >
+				<CheckBox>
+					<Image Source="/Assets/btnImages/ConD_Speedometer.png"/>
+				</CheckBox>
+				<Label Content="Speed"/>
+			</StackPanel>
+			<StackPanel>
+				<CheckBox>
+					<Image Source="/Assets/btnImages/SvennArrow.png"/>
+				</CheckBox>
+				<Label Content="Svenn Arrow"/>
+			</StackPanel>
+			<StackPanel>
+				<CheckBox>
+					<Image Source="/Assets/btnImages/ConD_Grid.png"/>
+				</CheckBox>
+				<Label Content="Grid"/>
+			</StackPanel>
+			<StackPanel>
+				<CheckBox>
+					<Image Source="/Assets/btnImages/ConD_DirectionMarker.png"/>
+				</CheckBox>
+				<Label Content="Direction Markers"/>
+			</StackPanel>
+		</StackPanel>
+
+		<StackPanel Grid.Column="2">
+			<StackPanel>
+				<CheckBox>
+					<Image Source="/Assets/btnImages/ConD_KeyBoard.png"/>
+				</CheckBox>
+				<Label Content="Keyboard"/>
+			</StackPanel>
+			<StackPanel>
+				<CheckBox>
+					<Image Source="/Assets/btnImages/ConD_FullScreenBegin.png"/>
+				</CheckBox>
+				<Label Content="Start FullScreen"/>
+			</StackPanel>
+			<StackPanel>
+					<CheckBox>
+						<Image Source="/Assets/btnImages/ConD_ExtraGuides.png"/>
+					</CheckBox>
+					<Label Content="Guidelines"/>
+			</StackPanel>
+			<StackPanel>
+				<CheckBox>
+					<Image Source="/Assets/btnImages/ConD_SectionHighlights.png"/>
+				</CheckBox>
+				<Label Content="Section Lines"/>
+			</StackPanel>
+		</StackPanel>
+
+		<Grid Grid.Column="3" HorizontalAlignment="Left" VerticalAlignment="Center">
+			<TextBox Text="{Binding NumberGuideLines}" HorizontalContentAlignment="Center" Width="100" FontWeight="Black" FontSize="20">
+				<i:Interaction.Behaviors>
+					<ei:EventTriggerBehavior EventName="PointerWheelChanged">
+						<ei:InvokeCommandAction PassEventArgsToCommand="True" Command="{Binding NumberGuideLinesOnPointerWheelChangedCommand}"/>
+					</ei:EventTriggerBehavior>
+				</i:Interaction.Behaviors>
+			</TextBox>
+		</Grid>
+
+
+		<Grid Grid.Column="3" Grid.ColumnSpan="4" HorizontalAlignment="Right">
+			<StackPanel HorizontalAlignment="Right">
+				<CheckBox>
+					<Image Source="/Assets/btnImages/ConD_LogElevation.png"/>
+				</CheckBox>
+				<Label Content="Elevation"/>
+			</StackPanel>
+
+			<StackPanel VerticalAlignment="Bottom">
+				<Label Content="Units" FontSize="30"/>
+				<StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+					<RadioButton IsChecked="True" GroupName="rb1" Margin="5">
+						<Image Source="/Assets/btnImages/ConD_Metric.png"/>
+					</RadioButton>
+					<RadioButton GroupName="rb1" Margin="5">
+						<Image Source="/Assets/btnImages/ConD_Imperial.png"/>
+					</RadioButton>
+				</StackPanel>
+			</StackPanel>
+		</Grid>
+	</Grid>
+</UserControl>

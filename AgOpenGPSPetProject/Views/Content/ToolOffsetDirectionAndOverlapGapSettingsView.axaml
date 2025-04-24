@@ -1,0 +1,171 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="1000" d:DesignHeight="700"
+             x:Class="AgOpenGPSPetProject.ToolOffsetDirectionAndOverlapGapSettingsView"
+			 FontSize="20"
+			 xmlns:vm="using:AgOpenGPSPetProject.ViewModels"
+			 x:DataType="vm:ToolOffsetDirectionAndOverlapGapSettingsViewModel"
+			 xmlns:i="using:Avalonia.Xaml.Interactivity"
+			 xmlns:ei="using:Avalonia.Xaml.Interactions.Core">
+
+	<UserControl.DataContext>
+		<vm:ToolOffsetDirectionAndOverlapGapSettingsViewModel/>
+	</UserControl.DataContext>
+	
+	<Grid>
+		<Grid.Styles>
+			<Style Selector="RadioButton">
+				<Setter Property="Template">
+					<Setter.Value>
+						<ControlTemplate>
+							<ContentPresenter BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" Content="{TemplateBinding Content}"/>
+						</ControlTemplate>
+					</Setter.Value>
+				</Setter>
+				<Setter Property="Margin" Value="20"/>
+				<Setter Property="BorderBrush" Value="Black"/>
+				<Setter Property="BorderThickness" Value="2"/>
+			</Style>
+			<Style Selector="RadioButton:checked">
+				<Setter Property="Background" Value="LightGreen"/>
+			</Style>
+		</Grid.Styles>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="0.3*"/>
+			<RowDefinition Height="0.5*"/>
+			<RowDefinition Height="0.2*"/>
+		</Grid.RowDefinitions>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="0.5*"/>
+			<ColumnDefinition Width="0.5*"/>
+		</Grid.ColumnDefinitions>
+
+
+		<StackPanel HorizontalAlignment="Center" Grid.Row="0" VerticalAlignment="Bottom" Grid.Column="0" Orientation="Horizontal">
+			<Button Width="200" Height="50" Background="Transparent">
+				<i:Interaction.Behaviors>
+					<ei:EventTriggerBehavior EventName="Click">
+						<ei:ChangePropertyAction TargetObject="{Binding}" PropertyName="ToolOffsetDirection" Value="0"/>
+					</ei:EventTriggerBehavior>
+				</i:Interaction.Behaviors>
+				<Image  Source="/Assets/btnImages/SteerZero.png"/>
+			</Button>
+			<TextBox FontSize="30" Text="{Binding ToolOffsetDirection}" Width="150" FontWeight="Black" HorizontalContentAlignment="Center">
+				<i:Interaction.Behaviors>
+					<ei:EventTriggerBehavior EventName="PointerWheelChanged">
+						<ei:InvokeCommandAction PassEventArgsToCommand="True" Command="{Binding ToolOffsetDirectionPointerWheelChangedCommand}"/>
+					</ei:EventTriggerBehavior>
+				</i:Interaction.Behaviors>
+			</TextBox>
+			<Label Content="cm" FontWeight="Black"/>
+		</StackPanel>
+
+
+		<StackPanel HorizontalAlignment="Center" Grid.Row="0" VerticalAlignment="Bottom" Grid.Column="1" Orientation="Horizontal">
+
+			<Button Width="200" Background="Transparent" Height="50">
+				<i:Interaction.Behaviors>
+					<ei:EventTriggerBehavior EventName="Click">
+						<ei:ChangePropertyAction TargetObject="{Binding}" PropertyName="OverlapOrGap" Value="0"/>
+					</ei:EventTriggerBehavior>
+				</i:Interaction.Behaviors>
+				<Image Source="/Assets/btnImages/SteerZero.png"/>
+			</Button>
+			<TextBox FontSize="30" Text="{Binding OverlapOrGap}" Width="150" FontWeight="Black" HorizontalContentAlignment="Center">
+				<i:Interaction.Behaviors>
+					<ei:EventTriggerBehavior EventName="PointerWheelChanged">
+						<ei:InvokeCommandAction PassEventArgsToCommand="True" Command="{Binding OverlapOrGapPointerWheelChangedCommand}"/>
+					</ei:EventTriggerBehavior>
+				</i:Interaction.Behaviors>
+			</TextBox>
+			<Label Content="cm" FontWeight="Black"/>
+		</StackPanel>
+
+
+		<StackPanel Grid.Row="1" Grid.Column="0">
+			<StackPanel>
+				<Label Margin="55 50 0 0" Content="Tool Offset Direction" FontWeight="Black"/>
+				<DockPanel HorizontalAlignment="Center">
+					<StackPanel>
+						<RadioButton GroupName="rb1" Margin="20" BorderBrush="Black" BorderThickness="1">
+							<i:Interaction.Behaviors>
+								<ei:DataTriggerBehavior Binding="{Binding ToolOffsetDirection}" ComparisonCondition="Equal" Value="0">
+									<ei:ChangePropertyAction PropertyName="IsEnabled" Value="False"/>
+									<ei:ChangePropertyAction PropertyName="IsChecked" Value="False"/>
+								</ei:DataTriggerBehavior>
+								<ei:DataTriggerBehavior Binding="{Binding ToolOffsetDirection}" ComparisonCondition="GreaterThan" Value="0">
+									<ei:ChangePropertyAction PropertyName="IsEnabled" Value="True"/>
+								</ei:DataTriggerBehavior>
+							</i:Interaction.Behaviors>
+							<Image Height="200" Width="150" Source="/Assets/Images/ToolOffsetNegativeLeft.png"/>
+						</RadioButton>
+						<Label Content="Tool Left" HorizontalAlignment="Center"/>
+					</StackPanel>
+					<StackPanel>
+						<RadioButton GroupName="rb1" Margin="20" BorderBrush="Black" BorderThickness="1">
+							<i:Interaction.Behaviors>
+								<ei:DataTriggerBehavior Binding="{Binding ToolOffsetDirection}" ComparisonCondition="Equal" Value="0">
+									<ei:ChangePropertyAction PropertyName="IsEnabled" Value="False"/>
+									<ei:ChangePropertyAction PropertyName="IsChecked" Value="False"/>
+								</ei:DataTriggerBehavior>
+								<ei:DataTriggerBehavior Binding="{Binding ToolOffsetDirection}" ComparisonCondition="GreaterThan" Value="0">
+									<ei:ChangePropertyAction PropertyName="IsEnabled" Value="True"/>
+								</ei:DataTriggerBehavior>
+							</i:Interaction.Behaviors>
+							<Image Height="200" Width="150" Source="/Assets/Images/ToolOffsetPositiveRight.png"/>
+						</RadioButton>
+						<Label Content="Tool Right" HorizontalAlignment="Center"/>
+					</StackPanel>
+				</DockPanel>
+			</StackPanel>
+		</StackPanel>
+
+		<StackPanel Grid.Row="1" Grid.Column="1">
+			<StackPanel>
+				<Label Margin="55 50 0 0" Content="Overlap / Gap" FontWeight="Black"/>
+				<DockPanel HorizontalAlignment="Center">
+					<StackPanel>
+						<RadioButton GroupName="rb2" Margin="20" BorderBrush="Black" BorderThickness="1">
+							<i:Interaction.Behaviors>
+								<ei:DataTriggerBehavior Binding="{Binding OverlapOrGap}" ComparisonCondition="Equal" Value="0">
+									<ei:ChangePropertyAction PropertyName="IsEnabled" Value="False"/>
+									<ei:ChangePropertyAction PropertyName="IsChecked" Value="False"/>
+								</ei:DataTriggerBehavior>
+								<ei:DataTriggerBehavior Binding="{Binding OverlapOrGap}" ComparisonCondition="GreaterThan" Value="0">
+									<ei:ChangePropertyAction PropertyName="IsEnabled" Value="True"/>
+								</ei:DataTriggerBehavior>
+							</i:Interaction.Behaviors>
+							<Image Height="200" Width="150" Source="/Assets/Images/ToolOverlap.png"/>
+						</RadioButton>
+						<Label Content="Overlap:" HorizontalAlignment="Center"/>
+					</StackPanel>
+					<StackPanel>
+						<RadioButton GroupName="rb2" Margin="20" BorderBrush="Black" BorderThickness="1">
+							<i:Interaction.Behaviors>
+								<ei:DataTriggerBehavior Binding="{Binding OverlapOrGap}" ComparisonCondition="Equal" Value="0">
+									<ei:ChangePropertyAction PropertyName="IsEnabled" Value="False"/>
+									<ei:ChangePropertyAction PropertyName="IsChecked" Value="False"/>
+								</ei:DataTriggerBehavior>
+								<ei:DataTriggerBehavior Binding="{Binding OverlapOrGap}" ComparisonCondition="GreaterThan" Value="0">
+									<ei:ChangePropertyAction PropertyName="IsEnabled" Value="True"/>
+								</ei:DataTriggerBehavior>
+							</i:Interaction.Behaviors>
+							<Image Height="200" Width="150" Source="/Assets/Images/ToolGap.png"/>
+						</RadioButton>
+						<Label Content="Gap" HorizontalAlignment="Center"/>
+					</StackPanel>
+				</DockPanel>
+			</StackPanel>
+		</StackPanel>
+		
+		
+		
+		
+		
+		
+		
+	</Grid>
+
+</UserControl>

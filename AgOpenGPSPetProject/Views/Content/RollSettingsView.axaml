@@ -1,0 +1,97 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="1000" d:DesignHeight="700"
+             x:Class="AgOpenGPSPetProject.RollSettingsView"
+			 FontSize="20">
+	<Grid>
+		<Grid.Styles>
+			<Style Selector="CheckBox">
+				<Setter Property="Template">
+					<Setter.Value>
+						<ControlTemplate>
+							<ContentPresenter BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Content="{TemplateBinding Content}" Background="{TemplateBinding Background}"/>
+						</ControlTemplate>
+					</Setter.Value>
+				</Setter>
+				<Setter Property="BorderBrush" Value="Black"/>
+				<Setter Property="BorderThickness" Value="1"/>
+			</Style>
+			<Style Selector="CheckBox:checked">
+				<Setter Property="Background" Value="LightGreen"/>
+				<Setter Property="BorderBrush" Value="Black"/>
+				<Setter Property="BorderThickness" Value="1"/>
+			</Style>
+		</Grid.Styles>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="*"/>
+			<RowDefinition Height="*"/>
+		</Grid.RowDefinitions>
+
+		<StackPanel Margin="60 10 60 0">
+			<DockPanel>
+				<StackPanel HorizontalAlignment="Left">
+					<Label Content="Remove Offset"/>
+					<CheckBox>
+						<Image Height="120" Source="/Assets/Images/ConDa_RemoveOffset.png"/>
+					</CheckBox>
+				</StackPanel>
+				<StackPanel HorizontalAlignment="Right">
+					<Label Content=" "/>
+					<CheckBox>
+						<Image Height="120" Source="/Assets/Images/ConDa_ResetIMU.png"/>
+					</CheckBox>
+				</StackPanel>
+			</DockPanel>
+			<Grid Margin="0 50 0 0">
+				<StackPanel HorizontalAlignment="Left">
+					<Label Content="Zero Roll"/>
+					<DockPanel>
+						<CheckBox>
+							<Image Height="120" Source="/Assets/Images/ConDa_RollSetZero.png"/>
+						</CheckBox>
+						<Label Margin="20 0 0 0" Content="0.00" VerticalAlignment="Center" FontWeight="Black"/>
+					</DockPanel>
+				</StackPanel>
+				
+					<DockPanel HorizontalAlignment="Center">
+						<Button	Background="Transparent">
+							<Image Height="70" Source="/Assets/btnImages/DnArrow64.png"/>
+						</Button>
+						<Button Background="Transparent">
+							<Image Height="70" Source="/Assets/btnImages/UpArrow64.png"/>
+						</Button>
+					</DockPanel>
+				
+				<StackPanel HorizontalAlignment="Right">
+					<Label Content=" "/>
+					<CheckBox>
+						<Image Height="120" Source="/Assets/Images/ConDa_InvertRoll.png"/>
+					</CheckBox>
+				</StackPanel>
+			</Grid>
+		</StackPanel>
+
+		<Grid Margin="60 60 60 0" Grid.Row="1">
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="0.6*"/>
+				<ColumnDefinition Width="0.4*"/>
+			</Grid.ColumnDefinitions>
+
+			<StackPanel Grid.Column="0" VerticalAlignment="Center">
+				<Grid HorizontalAlignment="Stretch">
+					<Label Content="Less"/>
+					<Label Content="Roll Filter" HorizontalAlignment="Center"/>
+					<Label Content="More" HorizontalAlignment="Right"/>
+				</Grid>
+				<Slider x:Name="slider" TickFrequency="1" IsSnapToTickEnabled="True" Maximum="98" Minimum="0"/>
+				<Label FontSize="30" FontWeight="Black" Content="{Binding Value,ElementName=slider}" HorizontalAlignment="Center"/>
+			</StackPanel>
+			<StackPanel Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Center">
+				<Image Height="200" Source="/Assets/Images/ConD_RollHelper.png"/>
+			</StackPanel>
+		</Grid>
+		
+	</Grid>
+</UserControl>
